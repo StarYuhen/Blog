@@ -16,7 +16,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  */
 @Configuration
 @EnableOpenApi
-public class SpringSwagger {
+public class Swagger {
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.OAS_30)

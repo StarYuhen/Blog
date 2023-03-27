@@ -1,10 +1,13 @@
-package com.yuhen.utils;
+package com.yuhen.mapper;
 
+import com.yuhen.utils.Menu;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
-import java.awt.*;
+
 import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface MenuMapper {
@@ -60,6 +63,6 @@ public interface MenuMapper {
             " left join menu_role mr on mr.mid = m.id " +
             "left join role r on r.id = mr.rid ")
     @ResultMap(value = "MenuAndRole")
-    ArrayList<Menu> getAllMenu();
+    List<Menu> getAllMenu();
 }
 

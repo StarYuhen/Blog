@@ -2,12 +2,13 @@ package com.yuhen.utils;
 
 import jakarta.annotation.Resource;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.util.AntPathMatcher;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 实现的Security动态分配器
@@ -26,10 +27,10 @@ public class FilterSecurity implements FilterInvocationSecurityMetadataSource {
         // 获取当前URL地址
         String requestURL = ((FilterInvocation) object).getRequest().getRequestURI();
         // 对拥有所有路径的map进行匹配，可以存入redis和mybatis，这里也建议使用二级缓存caffeine
-        ArrayList<Menu> AllMenu = menuService.findAll();
+        List<Menu> AllMenu = menuService.findAll();
         // 做匹配
         for (Menu menu : AllMenu) {
-            if (antPathMatcher.match(menu.getPattern(), requestURI)) {
+            if (antPathMatcher.match(menu.getPattern(), requestURL)) {
                 // 匹配成功, 拿到 role 列表, 也就是我们的权限
                 if (menu.getRoleList() == null || menu.getRoleList().isEmpty()) {
                     continue;

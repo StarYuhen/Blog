@@ -1,12 +1,18 @@
 package com.yuhen.config;
 
+import com.yuhen.utils.FilterSecurity;
+import jakarta.annotation.Resource;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.UrlAuthorizationConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import java.util.Map;
 
@@ -25,12 +31,29 @@ interface DynamicSecurityService {
  */
 @Configuration
 @EnableWebSecurity
-public class SpringSecurity {
+public class Security {
+
+
+    @Resource
+    private FilterSecurity filterSecurity;
 
     // 新版重写特性
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf()
+        ApplicationContext applicationContext = httpSecurity.getSharedObject(ApplicationContext.class);
+        httpSecurity
+                .apply(new UrlAuthorizationConfigurer<>(applicationContext))
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+                        object.setSecurityMetadataSource(filterSecurity);
+                        // 所有的url必须在数据库中存在, 才能够访问, 否则不行
+                        // object.setRejectPublicInvocations(true);
+                        return object;
+                    }
+                })
+                .and()
+                .csrf()
                 .disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
