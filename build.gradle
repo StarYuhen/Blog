@@ -23,11 +23,12 @@ dependencies {
     // 项目创建时的内容
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+    // 去除mybatis包采用mybatis-plus
+//    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
     implementation 'org.springframework.session:spring-session-data-redis'
     implementation 'org.springframework.session:spring-session-jdbc'
     compileOnly 'org.projectlombok:lombok'
@@ -51,18 +52,20 @@ dependencies {
     // mybatis-plus
     implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1'
     implementation 'com.baomidou:mybatis-plus-generator:3.5.3.1'
-    // Junit
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'com.baomidou:mybatis-plus-boot-starter-test:3.5.3.1'
+//    // Junit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     // druid
     implementation 'com.alibaba:druid-spring-boot-starter:1.2.15'
-    // Swagger
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    // Swagger in SpringDoc
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
     // cache
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'com.github.ben-manes.caffeine:caffeine:3.1.5'
     // mybatis
 //    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1'
+    implementation 'org.springframework.boot:spring-boot-starter-parent:3.0.5'
 }
 
 tasks.named('test') {

@@ -1,4 +1,4 @@
-package com.yuhen.mapper;
+package com.yuhen.entity;
 
 import com.yuhen.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;

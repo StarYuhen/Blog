@@ -2,8 +2,8 @@ package com.yuhen.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yuhen.domain.User;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
+@Component
 public interface UserMapper extends BaseMapper<User> {
 }

@@ -1,6 +1,5 @@
 package com.yuhen.entity;
 
-import com.yuhen.mapper.MenuMapper;
 import jakarta.annotation.Resource;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;

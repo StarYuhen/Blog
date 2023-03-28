@@ -4,7 +4,7 @@ spring:
     username: root
     password: abc123456
     # 引用driver数据库类
-    # driver-class-name: com.mysql.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     # druid 配置 https://github.com/alibaba/druid/blob/master/druid-spring-boot-starter/README.md
     druid:
       # 下面为连接池的补充设置，应用到上面所有数据源中
