@@ -1,12 +1,11 @@
 package com.yuhen.mapper;
 
-import com.yuhen.utils.Menu;
+import com.yuhen.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper

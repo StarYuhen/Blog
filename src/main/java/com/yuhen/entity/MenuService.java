@@ -1,4 +1,4 @@
-package com.yuhen.utils;
+package com.yuhen.entity;
 
 import com.yuhen.mapper.MenuMapper;
 import jakarta.annotation.Resource;
@@ -25,7 +25,8 @@ public class MenuService {
 
     @Cacheable(value = CACHE_NAME, key = FIND_ALL, unless = "#result?.size() == 0")
     public List<Menu> findAll() {
-        return menuMapper.getAllMenu();
+//        return menuMapper.getAllMenu();
+        return null;
     }
 
     public int insert(Menu menu) {
